@@ -7,3 +7,4 @@ psycopg2
 python-dotenv
 pickle
 streamlit
+psycopg2-binary
