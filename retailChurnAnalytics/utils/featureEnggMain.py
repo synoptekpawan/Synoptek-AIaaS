@@ -8,7 +8,7 @@ from datetime import timedelta
 import sys
 import warnings
 warnings.filterwarnings('ignore')
-sys.path.insert(0, r"C:/Users/pawanc/Desktop/retailAnalytics/retailChurnAnalytics/utils/")
+sys.path.insert(0, r".../../utils/")
 from churnUtility import *
 from featureEngg import *
 
