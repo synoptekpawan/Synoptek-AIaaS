@@ -7,14 +7,14 @@ import random
 np.random.seed(10)
 random.seed(10)
 import sys
-sys.path.insert(0, r"D:/reatilanalytics/retailChurnAnalytics/")
+sys.path.insert(0, r".../../")
 from evaluateModelOnHoldData import evalModel
 
 
-holdOuts = r"D:/reatilanalytics/retailChurnAnalytics/holdOutData/"
-outputs = r"D:/reatilanalytics/retailChurnAnalytics/outputs/"
-models = r"D:/reatilanalytics/retailChurnAnalytics/models/"
-logs = r"D:/reatilanalytics/retailChurnAnalytics/logs/"
+holdOuts = r".../../holdOutData/"
+outputs = r".../../outputs/"
+models = r".../../models/"
+logs = r".../../logs/"
 
 # -----------------------------------------------------------------------------------
 ## prepare logging config
