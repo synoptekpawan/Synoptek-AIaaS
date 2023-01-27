@@ -7,15 +7,15 @@ import random
 np.random.seed(10)
 random.seed(10)
 import sys
-sys.path.insert(0, r"D:/reatilanalytics/retailChurnAnalytics/")
+sys.path.insert(0, r".../../")
 from evaluateModelOnHoldData import evalModel
 from RetailChurnPrediction import RetailChurnPrediction
 from RetailChurnDashboard import RetailChurnDashboard
 
-holdOuts = r"D:/reatilanalytics/retailChurnAnalytics/inputs"
-outputs = r"D:/reatilanalytics/retailChurnAnalytics/outputs/"
-models = r"D:/reatilanalytics/retailChurnAnalytics/models/"
-logs = r"D:/reatilanalytics/retailChurnAnalytics/logs/"
+holdOuts = r".../../inputs"
+outputs = r".../../outputs/"
+models = r".../../models/"
+logs = r".../../logs/"
 
 
 def main ():
