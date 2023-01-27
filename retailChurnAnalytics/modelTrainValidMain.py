@@ -37,7 +37,7 @@ import os
 np.random.seed(10)
 random.seed(10)
 
-sys.path.insert(0, r"C:/Users/pawanc/Desktop/retailAnalytics/retailChurnAnalytics/utils/")
+sys.path.insert(0, r"D:/reatilanalytics/retailChurnAnalytics/utils/")
 from churnUtility import *
 from dataLabelingMain import dataLabelingMain
 from featureEnggMain import featureEnggMain
@@ -53,9 +53,9 @@ logging.basicConfig(filename='./logs/modelTrainValidMain.log',
 
 # -----------------------------------------------------------------------------------
 ## load date and folder variables
-inputs = r"C:/Users/pawanc/Desktop/retailAnalytics/retailChurnAnalytics/inputs/"
-outputs = r"C:/Users/pawanc/Desktop/retailAnalytics/retailChurnAnalytics/outputs/"
-models = r"C:/Users/pawanc/Desktop/retailAnalytics/retailChurnAnalytics/models/"
+inputs = r"D:/reatilanalytics/retailChurnAnalytics/inputs/"
+outputs = r"D:/reatilanalytics/retailChurnAnalytics/outputs/"
+models = r"D:/reatilanalytics/retailChurnAnalytics/models/"
 
 today_ = dt.datetime.today().date()
 # print(today_)

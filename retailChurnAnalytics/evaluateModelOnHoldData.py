@@ -33,7 +33,7 @@ import pickle
 np.random.seed(10)
 random.seed(10)
 
-sys.path.insert(0, r"C:/Users/pawanc/Desktop/retailAnalytics/retailChurnAnalytics/utils/")
+sys.path.insert(0, r"D:/reatilanalytics/retailChurnAnalytics/utils/")
 from churnUtility import *
 from dataLabelingMain import dataLabelingMain
 from featureEnggMain import featureEnggMain
@@ -41,9 +41,9 @@ from featureSelectionMain import trainTestSplitWithBestFeatMain
  
 # -----------------------------------------------------------------------------------
 ## load date and folder variables
-holdOuts = r"C:/Users/pawanc/Desktop/retailAnalytics/retailChurnAnalytics/holdOutData/"
-outputs = r"C:/Users/pawanc/Desktop/retailAnalytics/retailChurnAnalytics/outputs/"
-models = r"C:/Users/pawanc/Desktop/retailAnalytics/retailChurnAnalytics/models/"
+holdOuts = r"D:/reatilanalytics/retailChurnAnalytics/holdOutData/"
+outputs = r"D:/reatilanalytics/retailChurnAnalytics/outputs/"
+models = r"D:/reatilanalytics/retailChurnAnalytics/models/"
 
 today_ = dt.datetime.today().date()
 # print(today_)

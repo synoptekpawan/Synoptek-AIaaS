@@ -7,14 +7,14 @@ import random
 np.random.seed(10)
 random.seed(10)
 import sys
-sys.path.insert(0, r"C:/Users/pawanc/Desktop/retailAnalytics/retailChurnAnalytics/")
+sys.path.insert(0, r"D:/reatilanalytics/retailChurnAnalytics/")
 from evaluateModelOnHoldData import evalModel
 
 
-holdOuts = r"C:/Users/pawanc/Desktop/retailAnalytics/retailChurnAnalytics/holdOutData/"
-outputs = r"C:/Users/pawanc/Desktop/retailAnalytics/retailChurnAnalytics/outputs/"
-models = r"C:/Users/pawanc/Desktop/retailAnalytics/retailChurnAnalytics/models/"
-logs = r"C:/Users/pawanc/Desktop/retailAnalytics/retailChurnAnalytics/logs/"
+holdOuts = r"D:/reatilanalytics/retailChurnAnalytics/holdOutData/"
+outputs = r"D:/reatilanalytics/retailChurnAnalytics/outputs/"
+models = r"D:/reatilanalytics/retailChurnAnalytics/models/"
+logs = r"D:/reatilanalytics/retailChurnAnalytics/logs/"
 
 # -----------------------------------------------------------------------------------
 ## prepare logging config
