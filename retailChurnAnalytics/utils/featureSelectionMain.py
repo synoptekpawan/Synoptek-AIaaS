@@ -32,11 +32,7 @@ import numpy as np
 np.random.seed(10)
 random.seed(10)
 
-<<<<<<< HEAD
 sys.path.insert(0, r"./retailChurnAnalytics/utils/")
-=======
-sys.path.insert(0, r".../../utils/")
->>>>>>> 88dfedf678801cd959e6e50a20449b88128ef647
 from churnUtility import *
 from featureEngg import *
 from featSelection import *

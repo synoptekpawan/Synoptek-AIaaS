@@ -7,7 +7,7 @@ import random
 np.random.seed(10)
 random.seed(10)
 import sys
-<<<<<<< HEAD
+
 sys.path.insert(0, r"./retailChurnAnalytics/")
 from evaluateModelOnHoldData import evalModel
 
@@ -16,16 +16,6 @@ holdOuts = r"./retailChurnAnalytics/holdOutData/"
 outputs = r"./retailChurnAnalytics/outputs/"
 models = r"./retailChurnAnalytics/models/"
 logs = r"./retailChurnAnalytics/logs/"
-=======
-sys.path.insert(0, r".../../")
-from evaluateModelOnHoldData import evalModel
-
-
-holdOuts = r".../../holdOutData/"
-outputs = r".../../outputs/"
-models = r".../../models/"
-logs = r".../../logs/"
->>>>>>> 88dfedf678801cd959e6e50a20449b88128ef647
 
 # -----------------------------------------------------------------------------------
 ## prepare logging config
