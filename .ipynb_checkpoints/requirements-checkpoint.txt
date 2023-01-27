@@ -4,6 +4,5 @@ sklearn
 numpy
 matplotlib
 sqlalchemy
-psycopg2
 python-dotenv
 streamlit
