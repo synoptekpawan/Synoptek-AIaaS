@@ -1,5 +1,5 @@
 pandas
-scikit-learn
+sklearn
 numpy
 matplotlib
 sqlalchemy
@@ -7,4 +7,3 @@ psycopg2
 python-dotenv
 pickle
 streamlit
-psycopg2-binary

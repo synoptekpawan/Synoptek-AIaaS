@@ -69,6 +69,7 @@ def evalModel (f1, f2, holdOuts, outputs, models):
     allFeatData = featureEnggMain(holdOuts, filename_)
     #print(allFeatData.shape)
     #print('all Features Data', allFeatData.columns)
+    #print(allFeatData.head())
 
     # -----------------------------------------------------------------------------------
     # load the best features from disk
@@ -107,9 +108,10 @@ def evalModel (f1, f2, holdOuts, outputs, models):
 
     #print(predOnHoldSet)
 
-    churnPredDf = pd.DataFrame()
-    churnPredDf['UserId'] = allFeatData['UserId']
+    churnPredDf = allFeatData.copy()
+    #churnPredDf['UserId'] = allFeatData['UserId']
     churnPredDf['Churn'] = predOnHoldSet
+    churnPredDf = churnPredDf[['UserId','Age','Address','Gender','UserType','Churn']]
 
     #print(churnPredDf)
 
