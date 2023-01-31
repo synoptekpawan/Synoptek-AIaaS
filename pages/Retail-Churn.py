@@ -17,6 +17,7 @@ outputs = r"./retailChurnAnalytics/outputs/"
 models = r"./retailChurnAnalytics/models/"
 logs = r"./retailChurnAnalytics/logs/"
 
+
 def main ():
     try:
         st.title("Welcome to Retail Churn Analysis & Prediction service")
