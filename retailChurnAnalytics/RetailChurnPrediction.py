@@ -26,7 +26,7 @@ logging.basicConfig(filename=logs+'modelEvalMain.log',
 # -----------------------------------------------------------------------------------
 def RetailChurnPrediction (holdOuts, outputs, models):
     try:
-        #st.write("get the test data from here [link](https://share.streamlit.io/mesmith027/streamlit_webapps/main/MC_pi/streamlit_app.py)")
+        st.write("get the test data from here [link](https://github.com/synoptekpawan/reatilanalytics/tree/main/test_data/)")
         st.title("Please upload the data for which churn is to be predicted")
         # getting the input data from the user
         uploaded_file1 = st.file_uploader("Please upload user data in csv format here", key='4')
