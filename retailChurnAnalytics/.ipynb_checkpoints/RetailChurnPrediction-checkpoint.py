@@ -26,7 +26,7 @@ logging.basicConfig(filename=logs+'modelEvalMain.log',
 # -----------------------------------------------------------------------------------
 def RetailChurnPrediction (holdOuts, outputs, models):
     try:
-        st.write("get the test data from here [link](https://synoptek-my.sharepoint.com/:f:/p/pchichghare/Eu9XEyzj9V5KrUv_bDHN0QwBiJCSx5zvkwegSjhsq2n8Ow?e=POv5Ea/)")
+        st.write("[get the test data from here](https://synoptek-my.sharepoint.com/:f:/p/pchichghare/Eu9XEyzj9V5KrUv_bDHN0QwBiJCSx5zvkwegSjhsq2n8Ow?e=POv5Ea/)")
         st.title("Please upload the data for which churn is to be predicted")
         # getting the input data from the user
         uploaded_file1 = st.file_uploader("Please upload user data in csv format here", key='4')
