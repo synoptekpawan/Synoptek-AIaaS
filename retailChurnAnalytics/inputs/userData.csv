@@ -1,4 +1,4 @@
-UserId,Age,Address,Gender,UserType
+UserId,Age,Gender,UserType,Address
 204041,36,M,Value,ME
 1643825,24,F,Value,FL
 1813716,20,F,Fast,CA

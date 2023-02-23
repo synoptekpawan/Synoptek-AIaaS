@@ -8,6 +8,7 @@ from datetime import timedelta
 import sys
 import warnings
 warnings.filterwarnings('ignore')
+#sys.path.insert(0, r"./utils/")
 sys.path.insert(0, r"./retailChurnAnalytics/utils/")
 from churnUtility import *
 
@@ -27,10 +28,10 @@ def dataTaggingMain(dataframe1 = None, dataframe2 = None):
     ChurnThreshold=int(dataframe2.iloc[0]['churnThreshold'])
   
     #dataframe1['Timestamp'] = dataframe1.apply(lambda x : dt.datetime.fromtimestamp(x['Timestamp']).strftime('%Y-%m-%d'), axis=1)
-    dataframe1['Timestamp'] = dataframe1['Timestamp'].astype('datetime64[ns]')
+    dataframe1['Timestamp_'] = dataframe1['Timestamp_'].astype('datetime64[ns]')
     
     # 
-    dataframe1['Parsed_Date'] = pd.to_datetime(dataframe1['Timestamp'])
+    dataframe1['Parsed_Date'] = pd.to_datetime(dataframe1['Timestamp_'])
     ## Assigning Churn Status
     churnUtil=churnUtility(ChurnPeriod,ChurnThreshold)
     outdataframe=churnUtil.assign_churn_status(dataframe1,key_column=key_column,activity_column=activity_column) 

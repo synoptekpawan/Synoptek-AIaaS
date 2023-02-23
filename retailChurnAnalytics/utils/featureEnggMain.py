@@ -8,6 +8,7 @@ from datetime import timedelta
 import sys
 import warnings
 warnings.filterwarnings('ignore')
+#sys.path.insert(0, r"./utils/")
 sys.path.insert(0, r"./retailChurnAnalytics/utils/")
 from churnUtility import *
 from featureEngg import *
@@ -29,10 +30,10 @@ def featureEnggMain(inputs, filename_):
     allTaggedData_.drop_duplicates(inplace=True, ignore_index=True)
 
     allTaggedData1_ = allTaggedData.copy()
-    allTaggedData1_ = allTaggedData1_[['Quantity', 'Value', 'UserId', 'Timestamp', 'churnPeriod']]
+    allTaggedData1_ = allTaggedData1_[['Quantity', 'Value', 'UserId', 'Timestamp_', 'churnPeriod']]
 
     allTaggedData2_ = allTaggedData.copy()
-    allTaggedData2_ = allTaggedData2_[['ProductCategory', 'ItemId', 'Location', 'TransactionId', 'UserId', 'churnPeriod', 'Timestamp']]
+    allTaggedData2_ = allTaggedData2_[['ProductCategory', 'ItemId', 'Location', 'TransactionId', 'UserId', 'churnPeriod', 'Timestamp_']]
 
     # -----------------------------------------------------------------------------------
     ## create numeric features
@@ -54,6 +55,18 @@ def featureEnggMain(inputs, filename_):
 
     allFeatData_ = pd.merge(allTaggedData_, cnsf1_, on='UserId', how='inner')
     allFeatData_.drop_duplicates(inplace=True, ignore_index=True)
+    allFeatData_ = allFeatData_[['UserId', 'Age', 'Address', 'Gender', 'UserType',
+       'Total_Quantity', 'Total_Value', 'Total_churnPeriod', 'StDev_Quantity',  
+       'StDev_Value', 'StDev_churnPeriod', 'AvgTimeDelta', 'Recency',
+       'Unique_ProductCategory', 'Unique_ItemId', 'Unique_Location',
+       'Unique_TransactionId', 'Unique_churnPeriod',
+       'Total_Quantity_per_Unique_ProductCategory',
+       'Total_Quantity_per_Unique_ItemId',
+       'Total_Quantity_per_Unique_Location',
+       'Total_Quantity_per_Unique_TransactionId',
+       'Total_Value_per_Unique_ProductCategory',
+       'Total_Value_per_Unique_ItemId', 'Total_Value_per_Unique_Location',      
+       'Total_Value_per_Unique_TransactionId','Label']]
 
     ## save all feature engineered data
     allFeatData_.to_csv(inputs+"allFeaturesData_.csv", index=False)

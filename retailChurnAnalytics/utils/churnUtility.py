@@ -108,7 +108,7 @@ class churnUtility:
     
     def calculateNumericalDataFeaturesForGroup(self,df1,key_column,  summable_columns,max_date, rename_label):
         print(f'calculateNumericalDataFeaturesForGroup: max_date is {max_date}, rename_label is {rename_label}')
-        exclude_list=[key_column, 'month','ChurnPeriod','Timestamp']
+        exclude_list=[key_column, 'month','ChurnPeriod','Timestamp_']
         feat_dfs=[]
         # Generating Features corresponding to the summable list
         for feat in summable_columns:
@@ -160,11 +160,11 @@ class churnUtility:
        
 
         #    Extracting Timestamp
-        df1.Timestamp = df1.apply(lambda x : pd.to_datetime(x['Timestamp']).strftime('%Y-%m-%d'), axis=1)
-        print(df1.Timestamp.head())
+        df1.Timestamp_ = df1.apply(lambda x : pd.to_datetime(x['Timestamp_']).strftime('%Y-%m-%d'), axis=1)
+        print(df1.Timestamp_.head())
         churn_period = self.churn_period
 
-        df1['Parsed_Date']=pd.to_datetime(df1['Timestamp'])
+        df1['Parsed_Date']=pd.to_datetime(df1['Timestamp_'])
         min_date=df1.Parsed_Date.min()
         max_date=df1.Parsed_Date.max()
         
@@ -223,7 +223,7 @@ class churnUtility:
         
     """
     def calculateStringDataFeaturesForGroup(self,df1,key_column, uniquable_columns,  rename_label):        
-        exclude_list=[key_column, 'month','ChurnPeriod','Timestamp']
+        exclude_list=[key_column, 'month','ChurnPeriod','Timestamp_']
         
         # Generating Features corresponding to the uniquable list
         feat_dfs=[]
@@ -272,11 +272,11 @@ class churnUtility:
         df_profile=df1[base_features_list].drop_duplicates()
         churn_period = self.churn_period
         
-        df1.Timestamp = df1.apply(lambda x : pd.to_datetime(x['Timestamp']).strftime('%Y-%m-%d'), axis=1)
-        print(df1.Timestamp.head())
+        df1.Timestamp_ = df1.apply(lambda x : pd.to_datetime(x['Timestamp_']).strftime('%Y-%m-%d'), axis=1)
+        print(df1.Timestamp_.head())
         
         #   Important to have year in the month as well, it helps in ordering of months
-        df1['Parsed_Date']=pd.to_datetime(df1['Timestamp'])
+        df1['Parsed_Date']=pd.to_datetime(df1['Timestamp_'])
         min_date=df1.Parsed_Date.min()
         max_date=df1.Parsed_Date.max()
             
@@ -330,10 +330,10 @@ class churnUtility:
         # Calculating recency related features 1) Sort the time stamps 2) Get min and max date 3) Extend the max date to the end of the month as it is the current unit right now
         
         
-        if 'Timestamp' in df1.columns:
-            df_recency=df1[[key_column,'Timestamp']]
-            df_recency.Timestamp=pd.to_datetime(df_recency.Timestamp)
-            df_recency=df_recency.groupby(key_column).Timestamp.max().apply(lambda x:self.calculateDateDiff(x,max_date)).reset_index()
+        if 'Timestamp_' in df1.columns:
+            df_recency=df1[[key_column,'Timestamp_']]
+            df_recency.Timestamp_=pd.to_datetime(df_recency.Timestamp_)
+            df_recency=df_recency.groupby(key_column).Timestamp_.max().apply(lambda x:self.calculateDateDiff(x,max_date)).reset_index()
             df_recency.columns=[key_column,'Recency']
             print(df_recency.head())
             return df_recency
@@ -381,8 +381,8 @@ class churnUtility:
         A dataframe containing the userid and average time between transactions for each of the user.
     """                        
     def calculateTimeDelta(self,df,key_column='UserId'):
-        df.Timestamp=pd.to_datetime(df.Timestamp)
-        df2=pd.DataFrame(df.groupby(key_column).Timestamp.apply(list).apply(self.timedelta)).reset_index()
+        df.Timestamp_=pd.to_datetime(df.Timestamp_)
+        df2=pd.DataFrame(df.groupby(key_column).Timestamp_.apply(list).apply(self.timedelta)).reset_index()
         df2.columns=[key_column,'AvgTimeDelta']
         return df2
 
@@ -409,7 +409,7 @@ class churnUtility:
     def calculateAverages(self,df1,df2,key_column, uniquable_columns, summable_columns):
         base_features_list=[key_column]
         df_profile=df1[base_features_list].drop_duplicates() 
-        exclude_list=[key_column, 'month','ChurnPeriod','Timestamp','Group']
+        exclude_list=[key_column, 'month','ChurnPeriod','Timestamp_','Group']
         
         df_final = reduce(lambda left,right: pd.merge(left,right,on=[key_column], how='outer'), [df1,df2])
 

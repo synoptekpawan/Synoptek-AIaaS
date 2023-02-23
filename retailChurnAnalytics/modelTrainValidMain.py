@@ -28,6 +28,7 @@ from sklearn.metrics import roc_curve, auc
 from sklearn.metrics import roc_auc_score
 from sklearn.pipeline import Pipeline
 from matplotlib import pyplot
+from tpot import TPOTClassifier
 import random
 import numpy as np
 import pickle
@@ -38,6 +39,7 @@ np.random.seed(10)
 random.seed(10)
 
 sys.path.insert(0, r"./retailChurnAnalytics/utils/")
+#sys.path.insert(0, r"./utils/")
 from churnUtility import *
 from dataLabelingMain import dataLabelingMain
 from featureEnggMain import featureEnggMain
@@ -45,17 +47,21 @@ from featureSelectionMain import trainTestSplitWithBestFeatMain
  
 
 # -----------------------------------------------------------------------------------
-## prepare logging config
-logging.basicConfig(filename='./logs/modelTrainValidMain.log', 
-                    level = logging.DEBUG,
-                    format='%(asctime)s -%(name)s - %(levelname)s - %(message)s', 
-                    datefmt='%d-%b-%y %H:%M:%S')
+# ## prepare logging config
+# logging.basicConfig(filename='./logs/modelTrainValidMain.log', 
+#                     level = logging.DEBUG,
+#                     format='%(asctime)s -%(name)s - %(levelname)s - %(message)s', 
+#                     datefmt='%d-%b-%y %H:%M:%S')
 
 # -----------------------------------------------------------------------------------
 ## load date and folder variables
 inputs = r"./retailChurnAnalytics/inputs/"
 outputs = r"./retailChurnAnalytics/outputs/"
 models = r"./retailChurnAnalytics/models/"
+
+# inputs = r"./inputs/"
+# outputs = r"./outputs/"
+# models = r"./models/"
 
 today_ = dt.datetime.today().date()
 # print(today_)
@@ -113,13 +119,13 @@ def pullDataFromDb(tbName, host, user, passwd, db_name, port):
 host, user, passwd, db_name, port = load_envFile()
 tbName1 = 'churnUserData'
 f1 = pullDataFromDb(tbName1, host, user, passwd, db_name, port)
-f1 = f1.drop(['Id'], axis=1)
+#f1 = f1.drop(['Id'], axis=1)
 f1.to_csv(inputs+"userData.csv", index=False)
 #print(f1.head())
 
 tbName2 = 'churnActivityData'
 f2 = pullDataFromDb(tbName2, host, user, passwd, db_name, port)
-f2 = f2.drop(['Id'], axis=1)
+#f2 = f2.drop(['Id'], axis=1)
 f2.to_csv(inputs+"activityData.csv", index=False)
 #print(f2.head())
 
@@ -128,7 +134,7 @@ f2.to_csv(inputs+"activityData.csv", index=False)
 ## data tagging
 # f1 = 'userData.csv'
 # f2 = 'activityData.csv'
-allTaggedData = dataLabelingMain(inputs=inputs, f1=f1, f2=f2, churnPeriod_=21, churnThreshold_=0)
+allTaggedData = dataLabelingMain(inputs=inputs, f1=f1, f2=f2, churnPeriod_=30, churnThreshold_=0)
 print(allTaggedData.shape)
 print(allTaggedData.columns)
 
@@ -154,79 +160,26 @@ print(selected_cols)
 f = models+'bestFeatures_.pkl'
 pickle.dump(selected_cols, open(f, 'wb'))
 
-
 # -----------------------------------------------------------------------------------
-
+## model training
 try:
     ## train, validate ML model1
-    lr = LogisticRegression(random_state=42)
+    tpot = TPOTClassifier(generations=5, verbosity=2,  population_size=40, random_state=42)
+    tpot.fit(X_train_fs, y_train)
 
-    dist = dict(C=np.arange(0, 10, 1), penalty=['l2', 'l1'], tol=np.arange(1e-4, 0.1, 0.1))
+    pred_tpot = tpot.predict(X_test_fs)
 
-    clf = GridSearchCV(lr, dist, cv=5, scoring='accuracy')
+    acc_tpot = accuracy_score(y_test, pred_tpot)
 
-    search_space = clf.fit(X_train_fs, y_train)
-
-    lr_ = LogisticRegression(C=search_space.best_params_['C'], 
-                             penalty= search_space.best_params_['penalty'], 
-                             tol= search_space.best_params_['tol'], 
-                             random_state=42)
-
-    lr_.fit(X_train_fs, y_train)
-
-    pred_lr = lr_.predict(X_test_fs)
-
-    acc_lr = accuracy_score(y_test, pred_lr)
-
-    rocAuc_lr = roc_auc_score(y_test, pred_lr)
-    print(f'logistic regression - accuracy score: {acc_lr} , rocAuc score: {rocAuc_lr}')
-
-except Exception as e:
-    logging.exception("Exception occurred")
-
-# ---------------------------------------------------------------------------
-try:
-    ## train, validate ML model2
-    bdt = AdaBoostClassifier(
-        DecisionTreeClassifier(min_samples_leaf = 10, random_state = 42, max_depth = 1), random_state=42
-        )
-
-    dist = dict(algorithm = ["SAMME", "SAMME.R"], n_estimators = np.arange(10, 100, 10))
-    clf = GridSearchCV(bdt, dist, cv = 5, scoring = 'accuracy')
-
-    search_space = clf.fit(X_train_fs, y_train)
-
-    dt_ = AdaBoostClassifier(DecisionTreeClassifier(min_samples_leaf = 10, random_state = 42, max_depth = 1), 
-                             n_estimators = search_space.best_params_['n_estimators'], 
-                             algorithm = search_space.best_params_['algorithm'], 
-                             random_state=42)
-
-    dt_.fit(X_train_fs, y_train)
-
-    pred_dt = dt_.predict(X_test_fs)
-
-    acc_dt = accuracy_score(y_test, pred_dt)
-
-    rocAuc_dt = roc_auc_score(y_test, pred_dt)
-    print(f'boosted decision tree - accuracy score: {acc_dt} , rocAuc score: {rocAuc_dt}')
-except Exception as e:
-    logging.exception("Exception occurred")
-
-# ---------------------------------------------------------------------------
-try:
-    ## Select best model of 2 and save it
-    modelDict = {}
-    modelDict['lr'] = (rocAuc_lr, acc_lr, lr_)
-    modelDict['dt'] = (rocAuc_dt, acc_dt, dt_)
-    #print(modelDict)
-    
-    bestModel = max(modelDict, key = modelDict.get)
-    
-    print(modelDict[bestModel][2])
-    
+    rocAuc_tpot = roc_auc_score(y_test, pred_tpot)
+    print(f'accuracy score: {acc_tpot} , rocAuc score: {rocAuc_tpot}')
+    for idx, (name, transform) in enumerate(tpot.fitted_pipeline_.steps, start=1):
+        best_model = transform
+        #print(f'{idx}. {transform}')
+    print(best_model)
     # save the best ML model to disk
     f = models+'bestModel_.pkl'
-    pickle.dump(modelDict[bestModel][2], open(f, 'wb'))
+    pickle.dump(best_model, open(f, 'wb'))
 
 except Exception as e:
     logging.exception("Exception occurred")

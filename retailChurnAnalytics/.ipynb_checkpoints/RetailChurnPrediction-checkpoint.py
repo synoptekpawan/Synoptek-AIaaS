@@ -32,7 +32,7 @@ def RetailChurnPrediction (holdOuts, outputs, models):
         uploaded_file1 = st.file_uploader("Please upload user data in csv format here", key='4')
         uploaded_file2 = st.file_uploader("Please upload activity data in csv format here", key='5')
         if (uploaded_file1 is not None) & (uploaded_file2 is not None):
-            if st.button("Upload Files & Run Model", key='3'):
+            if st.button("Upload Files & Run Model", key='6'):
                 userdata  = pd.read_csv(uploaded_file1)
                 userdata.to_csv(holdOuts+"userDataHdo.csv", index=False)
                 actdata  = pd.read_csv(uploaded_file2)

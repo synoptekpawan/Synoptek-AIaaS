@@ -30,9 +30,9 @@ import numpy as np
 import pickle
 
 
-np.random.seed(10)
-random.seed(10)
-
+# np.random.seed(10)
+# random.seed(10)
+#sys.path.insert(0, r"./utils/")
 sys.path.insert(0, r"./retailChurnAnalytics/utils/")
 from churnUtility import *
 from dataLabelingMain import dataLabelingMain
@@ -44,6 +44,10 @@ from featureSelectionMain import trainTestSplitWithBestFeatMain
 holdOuts = r"./retailChurnAnalytics/holdOutData/"
 outputs = r"./retailChurnAnalytics/outputs/"
 models = r"./retailChurnAnalytics/models/"
+
+# holdOuts = r"./holdOutData/"
+# outputs = r"./outputs/"
+# models = r"./models/"
 
 today_ = dt.datetime.today().date()
 # print(today_)
@@ -76,18 +80,20 @@ def evalModel (f1, f2, holdOuts, outputs, models):
     f = models+'bestFeatures_.pkl'
     selected_cols = pickle.load(open(f, 'rb'))
     print(selected_cols)
+    print(len(selected_cols))
 
     allFeatData_ = pd.get_dummies(allFeatData, columns = ['Address', 'Gender','UserType','Label'], drop_first=True)
     #print(allFeatData_.columns.tolist())
 
-    featureSet = list(set(selected_cols).intersection(allFeatData_.columns.tolist()))
-    print(featureSet)
+#     featureSet = list(set(selected_cols).intersection(allFeatData_.columns.tolist()))
+#     print(featureSet)
+#     print(len(featureSet))
 
-    diffSet = list(set(selected_cols) - set(allFeatData_.columns.tolist()))
-    print(diffSet)
+#     diffSet = list(set(selected_cols) - set(allFeatData_.columns.tolist()))
+#     print(diffSet)
 
     holdSet = allFeatData_.copy()
-    holdSetFinal = holdSet[featureSet]
+    holdSetFinal = holdSet[selected_cols] #featureSet
 
     # holdSetFinal['Age_E'] = len(holdSetFinal)*[0]
     # holdSetFinal['Address_C'] = len(holdSetFinal)*[0]
@@ -103,6 +109,7 @@ def evalModel (f1, f2, holdOuts, outputs, models):
     # load the best model disk
     f = models+'bestModel_.pkl' # today_, yesterday_
     bestModel = pickle.load(open(f, 'rb'))
+    print(bestModel)
 
     predOnHoldSet = bestModel.predict(holdSetFinal)
 
@@ -118,6 +125,15 @@ def evalModel (f1, f2, holdOuts, outputs, models):
     churnPredDf.to_csv(outputs+'churnPredDf_.csv')
     
     return churnPredDf
+
+# -------------------------------------------------------------------------------------------------
+
+
+
+# f1 = pd.read_csv(holdOuts+'userDataHdo.csv')
+# f2 = pd.read_csv(holdOuts+'activityDataHdo.csv')
+# predf = evalModel (f1, f2, holdOuts, outputs, models)
+# print(predf)
 
 
 

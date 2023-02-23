@@ -11,6 +11,7 @@ sys.path.insert(0, r"./retailChurnAnalytics/")
 from evaluateModelOnHoldData import evalModel
 from RetailChurnPrediction import RetailChurnPrediction
 from RetailChurnDashboard import RetailChurnDashboard
+#from RetailChurnTestResponse import RetailChurnTestResponse
 
 holdOuts = r"./retailChurnAnalytics/holdOutData/"
 outputs = r"./retailChurnAnalytics/outputs/"
@@ -22,9 +23,13 @@ def main ():
     try:
         st.title("Welcome to Retail Churn Analysis & Prediction service")
 
-        if st.checkbox("Retail Churn Prediction", key='1'):
+        # if st.checkbox("Retail Churn Test Response", key='1'):
+        #     RetailChurnTestResponse()
+            
+            #RetailChurnPrediction(holdOuts, outputs, models)
+        if st.checkbox("Retail Churn Batch Prediction", key='2'):
             RetailChurnPrediction(holdOuts, outputs, models)
-        if st.checkbox("Retail Churn Dashboard", key='2'):
+        if st.checkbox("Retail Churn Dashboard", key='3'):
             RetailChurnDashboard()
 
                 
