@@ -1,8 +1,9 @@
 psycopg2-binary
 pandas
-sklearn
+scikit-learn
 numpy
 matplotlib
 sqlalchemy
 python-dotenv
 streamlit
+streamlit-shap

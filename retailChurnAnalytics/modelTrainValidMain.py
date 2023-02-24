@@ -39,7 +39,7 @@ np.random.seed(10)
 random.seed(10)
 
 sys.path.insert(0, r"./retailChurnAnalytics/utils/")
-#sys.path.insert(0, r"./utils/")
+# sys.path.insert(0, r"./utils/")
 from churnUtility import *
 from dataLabelingMain import dataLabelingMain
 from featureEnggMain import featureEnggMain
@@ -159,6 +159,14 @@ print(selected_cols)
 # save the best features to disk
 f = models+'bestFeatures_.pkl'
 pickle.dump(selected_cols, open(f, 'wb'))
+
+# save the X_train to disk
+f = models+'X_train.pkl'
+pickle.dump(X_train_fs, open(f, 'wb'))
+
+# save the y_train to disk
+f = models+'y_train.pkl'
+pickle.dump(y_train, open(f, 'wb'))
 
 # -----------------------------------------------------------------------------------
 ## model training

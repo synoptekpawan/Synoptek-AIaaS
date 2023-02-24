@@ -8,6 +8,7 @@ from datetime import timedelta
 import sys
 import warnings
 warnings.filterwarnings('ignore')
+import shap
 
 # compare different numbers of features selected using anova f-test
 from numpy import mean
@@ -32,7 +33,7 @@ import pickle
 
 # np.random.seed(10)
 # random.seed(10)
-#sys.path.insert(0, r"./utils/")
+# sys.path.insert(0, r"./utils/")
 sys.path.insert(0, r"./retailChurnAnalytics/utils/")
 from churnUtility import *
 from dataLabelingMain import dataLabelingMain
@@ -81,6 +82,16 @@ def evalModel (f1, f2, holdOuts, outputs, models):
     selected_cols = pickle.load(open(f, 'rb'))
     print(selected_cols)
     print(len(selected_cols))
+    
+    # load the X_train from disk
+    f = models+'X_train.pkl'
+    X_train = pickle.load(open(f, 'rb'))
+    print(X_train.shape)
+    
+    # load the X_train from disk
+    f = models+'y_train.pkl'
+    y_train = pickle.load(open(f, 'rb'))
+    print(y_train.shape)
 
     allFeatData_ = pd.get_dummies(allFeatData, columns = ['Address', 'Gender','UserType','Label'], drop_first=True)
     #print(allFeatData_.columns.tolist())
@@ -106,6 +117,9 @@ def evalModel (f1, f2, holdOuts, outputs, models):
     # -----------------------------------------------------------------------------------
     ## Get model preodiction hold out set
 
+    # Need to load JS vis in the notebook
+    shap.initjs()
+
     # load the best model disk
     f = models+'bestModel_.pkl' # today_, yesterday_
     bestModel = pickle.load(open(f, 'rb'))
@@ -124,7 +138,8 @@ def evalModel (f1, f2, holdOuts, outputs, models):
 
     churnPredDf.to_csv(outputs+'churnPredDf_.csv')
     
-    return churnPredDf
+    
+    return churnPredDf, X_train, y_train, bestModel, selected_cols, holdSetFinal
 
 # -------------------------------------------------------------------------------------------------
 
