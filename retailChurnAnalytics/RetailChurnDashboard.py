@@ -6,5 +6,5 @@ def RetailChurnDashboard():
     #     """, unsafe_allow_html=True)
 
     st.markdown("""
-        	<iframe title="churnDash_v3" width="900" height="500" src="https://app.powerbi.com/reportEmbed?reportId=6fe06abe-5ba7-4160-8a04-d609490b2b94&autoAuth=true&ctid=150d7f46-ce04-4895-b4bd-7cf3fdf622fa" frameborder="0" style="border:0" allowFullScreen></iframe>
+        	<iframe title="churnDash_v3" width="900" height="900" src="https://app.powerbi.com/reportEmbed?reportId=6fe06abe-5ba7-4160-8a04-d609490b2b94&autoAuth=true&ctid=150d7f46-ce04-4895-b4bd-7cf3fdf622fa" frameborder="0" style="border:0" allowFullScreen></iframe>
         """, unsafe_allow_html=True)
