@@ -35,10 +35,11 @@ import pickle
 # random.seed(10)
 # sys.path.insert(0, r"./utils/")
 sys.path.insert(0, r"./retailChurnAnalytics/utils/")
-from churnUtility import *
-from dataLabelingMain import dataLabelingMain
-from featureEnggMain import featureEnggMain
-from featureSelectionMain import trainTestSplitWithBestFeatMain
+
+from churnUtility import * #pylance: disable-reportMissingImports
+from dataLabelingMain import dataLabelingMain #pylance: disable-reportMissingImports
+from featureEnggMain import featureEnggMain #pylance: disable-reportMissingImports
+from featureSelectionMain import trainTestSplitWithBestFeatMain #pylance: disable-reportMissingImports
  
 # -----------------------------------------------------------------------------------
 ## load date and folder variables

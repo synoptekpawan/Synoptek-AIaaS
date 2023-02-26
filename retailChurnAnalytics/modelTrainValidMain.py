@@ -116,17 +116,17 @@ def pullDataFromDb(tbName, host, user, passwd, db_name, port):
 
 # -----------------------------------------------------------------------------------
 ## get db creds
-host, user, passwd, db_name, port = load_envFile()
+host, user, passwd, db_name, port = load_envFile()  # type: ignore
 tbName1 = 'churnUserData'
 f1 = pullDataFromDb(tbName1, host, user, passwd, db_name, port)
 #f1 = f1.drop(['Id'], axis=1)
-f1.to_csv(inputs+"userData.csv", index=False)
+f1.to_csv(inputs+"userData.csv", index=False)  # type: ignore
 #print(f1.head())
 
 tbName2 = 'churnActivityData'
 f2 = pullDataFromDb(tbName2, host, user, passwd, db_name, port)
 #f2 = f2.drop(['Id'], axis=1)
-f2.to_csv(inputs+"activityData.csv", index=False)
+f2.to_csv(inputs+"activityData.csv", index=False)  # type: ignore
 #print(f2.head())
 
 
@@ -152,7 +152,7 @@ X_train_fs, X_test_fs, y_train, y_test, bestK_, selected_cols = trainTestSplitWi
                                                                                                filename_, 
                                                                                                test_size=0.3, 
                                                                                                random_state=42)
-print(X_train_fs.shape, X_test_fs.shape, y_train.shape, y_test.shape)
+print(X_train_fs.shape, X_test_fs.shape, y_train.shape, y_test.shape)  # type: ignore
 print(bestK_)
 print(selected_cols)
 
