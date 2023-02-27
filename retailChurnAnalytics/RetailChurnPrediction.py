@@ -2,12 +2,11 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import logging
-import pickle
 import random
 import matplotlib.pyplot as plt
 import seaborn as sns
 sns.set(font_scale = 1.1)
-from sklearn.metrics import classification_report, roc_curve, auc, roc_auc_score, accuracy_score, confusion_matrix, RocCurveDisplay
+from sklearn.metrics import roc_auc_score, accuracy_score, RocCurveDisplay
 from streamlit_shap import st_shap
 import shap
 shap.initjs()
