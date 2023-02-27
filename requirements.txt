@@ -7,3 +7,4 @@ sqlalchemy
 python-dotenv
 streamlit
 streamlit-shap
+seaborn
