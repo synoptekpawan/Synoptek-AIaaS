@@ -7,4 +7,3 @@ sqlalchemy
 python-dotenv
 streamlit
 streamlit-shap
-ipython

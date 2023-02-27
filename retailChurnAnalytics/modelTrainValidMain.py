@@ -168,6 +168,14 @@ pickle.dump(X_train_fs, open(f, 'wb'))
 f = models+'y_train.pkl'
 pickle.dump(y_train, open(f, 'wb'))
 
+# save the X_train to disk
+f = models+'X_test.pkl'
+pickle.dump(X_test_fs, open(f, 'wb'))
+
+# save the y_train to disk
+f = models+'y_test.pkl'
+pickle.dump(y_test, open(f, 'wb'))
+
 # -----------------------------------------------------------------------------------
 ## model training
 try:

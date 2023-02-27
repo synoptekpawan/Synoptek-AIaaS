@@ -93,6 +93,16 @@ def evalModel (f1, f2, holdOuts, outputs, models):
     f = models+'y_train.pkl'
     y_train = pickle.load(open(f, 'rb'))
     print(y_train.shape)
+    
+    # save the X_test to disk
+    f = models+'X_test.pkl'
+    X_test = pickle.load(open(f, 'rb'))
+    print(X_test.shape)
+
+    # save the y_test to disk
+    f = models+'y_test.pkl'
+    y_test = pickle.load(open(f, 'rb'))
+    print(y_test.shape)
 
     allFeatData_ = pd.get_dummies(allFeatData, columns = ['Address', 'Gender','UserType','Label'], drop_first=True)
     #print(allFeatData_.columns.tolist())
@@ -140,7 +150,7 @@ def evalModel (f1, f2, holdOuts, outputs, models):
     churnPredDf.to_csv(outputs+'churnPredDf_.csv')
     
     
-    return churnPredDf, X_train, y_train, bestModel, selected_cols, holdSetFinal
+    return churnPredDf, X_train, y_train, X_test, y_test, bestModel, selected_cols, holdSetFinal
 
 # -------------------------------------------------------------------------------------------------
 

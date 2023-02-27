@@ -5,15 +5,21 @@ import logging
 import pickle
 import random
 import matplotlib.pyplot as plt
+import seaborn as sns
+sns.set(font_scale = 1.1)
+from sklearn.metrics import classification_report, roc_curve, auc, roc_auc_score, accuracy_score, confusion_matrix, RocCurveDisplay
+from sklearn.metrics import plot_precision_recall_curve
 from streamlit_shap import st_shap
 import shap
+shap.initjs()
+st.set_option('deprecation.showPyplotGlobalUse', False)
 np.random.seed(10)
 random.seed(10)
 import sys
 sys.path.insert(0, r"./retailChurnAnalytics/")
 from evaluateModelOnHoldData import evalModel
 # Need to load JS vis in the notebook
-shap.initjs()
+
 
 
 holdOuts = r"./retailChurnAnalytics/holdOutData/"
@@ -54,10 +60,28 @@ def RetailChurnPrediction (holdOuts, outputs, models):
                 actdata  = pd.read_csv(uploaded_file2)
                 #actdata.to_csv(holdOuts+"activityDataHdo.csv", index=False)
 
-                churnPredDf, X_train, y_train, bestModel, selected_cols, holdSetFinal = evalModel(userdata, actdata, holdOuts, outputs, models)
+                churnPredDf, X_train, y_train, X_test, y_test, bestModel, selected_cols, holdSetFinal = evalModel(userdata, actdata, holdOuts, outputs, models)
 
                 st.dataframe(churnPredDf)
                 
+                # model evaluation metrics
+                st.title("Model evaluation metrics")
+                st.write("Best Model Selected: ",bestModel)
+                predTr_ = bestModel.predict(X_train)
+                predTe_ = bestModel.predict(X_test)
+                
+                accTr_ = accuracy_score(y_train, predTr_)
+                accTe_ = accuracy_score(y_test, predTe_)
+                st.write('Model Train Accuracy Score: ', round(accTr_,3), 'Model Test Accuracy Score: ', round(accTe_,3))
+                #st.write('Model Test Accuracy Score: ', round(accTe_,3))
+                
+                # st.write('Below is a DataFrame:', data_frame, 'Above is a dataframe.')
+                
+                rocAucTr_ = roc_auc_score(y_train, predTr_)
+                rocAucTe_ = roc_auc_score(y_test, predTe_)
+                st.write('Model Train AUC Score: ', round(rocAucTr_,3), 'Model Test AUC Score: ', round(rocAucTe_,3))
+                #st.write('Model Test AUC Score: ', round(rocAucTe_,3))
+            
                 # Create a model explainer
                 model_explainer = shap.Explainer(bestModel.predict, holdSetFinal, feature_names=selected_cols)
 
