@@ -64,7 +64,7 @@ def RetailChurnPrediction (holdOuts, outputs, models):
                 
                 # model evaluation metrics
                 st.title("Model evaluation metrics")
-                st.write("Best Model Selected: ", bestModel)
+                st.write('Best Model Selected: ', bestModel)
                 predTr_ = bestModel.predict(X_train)
                 predTe_ = bestModel.predict(X_test)
                 
