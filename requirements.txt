@@ -12,3 +12,4 @@ ipython
 statsmodels
 shap
 tpot
+scikit-learn

@@ -16,6 +16,7 @@ from tpot import TPOTRegressor
 from sklearn.ensemble import GradientBoostingRegressor
 from sklearn.pipeline import make_pipeline, make_union
 from sklearn.svm import LinearSVR
+from sklearn.linear_model import HuberRegressor, LinearRegression
 from tpot.builtins import StackingEstimator, ZeroCount
 from tpot.export_utils import set_param_recursive
 import os
@@ -82,11 +83,11 @@ for itm in bau_data.ITEM_NAME.unique():
     if len(withOutCombo) > 1:
         
         # train the model on data
-        exported_pipeline, mse_tr, mae_tr, mape_tr, r2score_tr, mse_te, mae_te, mape_te, r2score_te = trainedModel(withOutCombo)
+        regModel, mse_tr, mae_tr, mape_tr, r2score_tr, mse_te, mae_te, mape_te, r2score_te = trainedModel(withOutCombo)
         
         # save the best features to disk
         f = models+itm+'_withOutCombo.pkl'
-        pickle.dump(exported_pipeline, open(f, 'wb'))
+        pickle.dump(regModel, open(f, 'wb'))
         
         # recording elasticities
         #elasticities[itm] = elasticity
@@ -106,11 +107,11 @@ for itm in bau_data.ITEM_NAME.unique():
     withCombo = chNew[chNew['IS_COMBO']==1]
     if len(withCombo) > 1:
         # train the model on data
-        exported_pipeline, mse_tr, mae_tr, mape_tr, r2score_tr, mse_te, mae_te, mape_te, r2score_te = trainedModel(withCombo)
+        regModel, mse_tr, mae_tr, mape_tr, r2score_tr, mse_te, mae_te, mape_te, r2score_te = trainedModel(withCombo)
         
         # save the best features to disk
         f = models+itm+'_withCombo.pkl'
-        pickle.dump(exported_pipeline, open(f, 'wb'))
+        pickle.dump(regModel, open(f, 'wb'))
         
         # recording elasticities
         #elasticities[itm] = elasticity

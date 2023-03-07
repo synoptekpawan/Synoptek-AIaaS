@@ -17,6 +17,7 @@ from tpot import TPOTRegressor
 from sklearn.ensemble import GradientBoostingRegressor
 from sklearn.pipeline import make_pipeline, make_union
 from sklearn.svm import LinearSVR
+from sklearn.linear_model import HuberRegressor, LinearRegression
 from tpot.builtins import StackingEstimator, ZeroCount
 from tpot.export_utils import set_param_recursive
 import os
