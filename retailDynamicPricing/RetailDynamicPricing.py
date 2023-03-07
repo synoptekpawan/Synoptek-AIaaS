@@ -14,7 +14,7 @@ st.set_option('deprecation.showPyplotGlobalUse', False)
 np.random.seed(10)
 random.seed(10)
 import sys
-sys.path.insert(0, r"./retailDynamicPricing/utils/")
+sys.path.insert(0, r"retailDynamicPricing/utils/")
 # sys.path.insert(0, r"./utils/")
 from evaluateModelOnHoldData import evalModel
 # Need to load JS vis in the notebook

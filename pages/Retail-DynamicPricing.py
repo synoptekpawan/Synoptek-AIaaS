@@ -7,7 +7,7 @@ import random
 np.random.seed(10)
 random.seed(10)
 import sys
-sys.path.insert(0, r"./retailDynamicPricing/")
+sys.path.insert(0, r"retailDynamicPricing/") # retailDynamicPricing\RetailDynamicPricing.py
 # sys.path.insert(0, r"./utils/")
 #from evaluateModelOnHoldData import evalModel
 from RetailDynamicPricing import RetailDynamicPricing
