@@ -7,3 +7,9 @@ sqlalchemy
 python-dotenv
 streamlit
 streamlit-shap
+seaborn
+ipython
+statsmodels
+shap
+tpot
+scikit-learn

@@ -1,19 +1,27 @@
 import streamlit as st
+# Import the reqiured libraries
 import pandas as pd
 import numpy as np
-import logging
-import random
+import statsmodels.api as sm
+from statsmodels.formula.api import ols
 import matplotlib.pyplot as plt
-import seaborn as sns
-sns.set(font_scale = 1.1)
-from sklearn.metrics import roc_auc_score, accuracy_score, RocCurveDisplay
-from streamlit_shap import st_shap
-import shap
-shap.initjs()
-st.set_option('deprecation.showPyplotGlobalUse', False)
-np.random.seed(10)
-random.seed(10)
+import seaborn as sns; sns.set(style="ticks", color_codes=True)
+from datetime import datetime, timedelta
+import warnings
+warnings.filterwarnings('ignore')
+warnings.filterwarnings(action='ignore', category=DeprecationWarning)
+from scipy import stats
+from sklearn.metrics import mean_squared_error, mean_absolute_error, mean_absolute_percentage_error, r2_score
+from sklearn.model_selection import train_test_split, RepeatedKFold
+from tpot import TPOTRegressor
+from sklearn.ensemble import GradientBoostingRegressor
+from sklearn.pipeline import make_pipeline, make_union
+from sklearn.svm import LinearSVR
+from tpot.builtins import StackingEstimator, ZeroCount
+from tpot.export_utils import set_param_recursive
+import os
 import sys
+import pickle
 sys.path.insert(0, r"./retailDynamicPricing/utils/")
 # sys.path.insert(0, r"./utils/")
 from evaluateModelOnHoldData import evalModel
