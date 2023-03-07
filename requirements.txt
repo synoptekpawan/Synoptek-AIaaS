@@ -9,3 +9,5 @@ streamlit
 streamlit-shap
 seaborn
 ipython
+statsmodels
+shap
