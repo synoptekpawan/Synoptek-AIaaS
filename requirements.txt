@@ -12,4 +12,7 @@ ipython
 statsmodels
 shap
 tpot
-scikit-learn
+tqdm
+textblob
+sentence-transformers
+transformers
