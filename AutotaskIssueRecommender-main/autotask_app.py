@@ -27,10 +27,13 @@ from numpy.linalg import norm
 device = torch.device("cpu")
 model.to(device)
 
+models_ = r"./AutotaskIssueRecommender-main/textEmbedding/"
+
 import pickle
 # Load the text embeddings from the file
-with open(r"./textEmbedding/text_embeddings.pkl", "rb") as f:
+with open(models_+"text_embeddings.pkl", "rb") as f:
     embeddings_dataset = pickle.load(f)
+
 
 
 # Pre trained Sentence Transformers
