@@ -31,8 +31,12 @@ models_ = r"./AutotaskIssueRecommender-main/textEmbedding/"
 
 import pickle
 # Load the text embeddings from the file
-with open(models_+"text_embeddings.pkl", "rb") as f:
-    embeddings_dataset = pickle.load(f)
+# with open(models_+"text_embeddings.pkl", "rb") as f:
+#     embeddings_dataset = pickle.load(f)
+
+# load the X_train from disk
+f = models_+"text_embeddings.pkl"
+embeddings_dataset = pickle.load(open(f, 'rb'))
 
 
 
