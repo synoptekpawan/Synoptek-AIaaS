@@ -17,3 +17,4 @@ textblob
 sentence-transformers
 transformers
 datasets
+faiss
