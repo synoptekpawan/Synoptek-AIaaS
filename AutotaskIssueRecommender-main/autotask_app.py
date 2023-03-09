@@ -29,7 +29,7 @@ model.to(device)
 
 import pickle
 # Load the text embeddings from the file
-with open(r"./Text Embedding/text_embeddings.pkl", "rb") as f:
+with open(r"./textEmbedding/text_embeddings.pkl", "rb") as f:
     embeddings_dataset = pickle.load(f)
 
 
