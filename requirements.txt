@@ -16,3 +16,4 @@ tqdm
 textblob
 sentence-transformers
 transformers
+datasets
