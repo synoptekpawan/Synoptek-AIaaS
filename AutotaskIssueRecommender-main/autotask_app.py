@@ -14,9 +14,9 @@ import time
 from tqdm import tqdm
 import seaborn as sns
 import numpy as np
-from textblob import TextBlob
+from textblob import TextBlob # type: ignore
 import matplotlib.pyplot as plt
-from sentence_transformers import SentenceTransformer
+from sentence_transformers import SentenceTransformer # type: ignore
 import streamlit as st
 import os
 model = SentenceTransformer('distilbert-base-nli-stsb-mean-tokens')
@@ -41,7 +41,7 @@ embeddings_dataset = pickle.load(open(f, 'rb'))
 
 
 # Pre trained Sentence Transformers
-from transformers import AutoTokenizer, AutoModel
+from transformers import AutoTokenizer, AutoModel # type: ignore
 
 model_ckpt = "sentence-transformers/multi-qa-mpnet-base-dot-v1"
 tokenizer = AutoTokenizer.from_pretrained(model_ckpt)
