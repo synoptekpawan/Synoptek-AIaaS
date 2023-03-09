@@ -17,4 +17,4 @@ textblob
 sentence-transformers
 transformers
 datasets
-faiss
+faiss-cpu
