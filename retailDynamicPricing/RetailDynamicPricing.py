@@ -23,6 +23,7 @@ from tpot.export_utils import set_param_recursive
 import os
 import sys
 import pickle
+
 sys.path.insert(0, r"./retailDynamicPricing/utils/")
 # sys.path.insert(0, r"./utils/")
 from evaluateModelOnHoldData import evalModel
@@ -103,7 +104,7 @@ def RetailDynamicPricing (holdOuts, outputs, models):
         st.success('Thanks for using the service')
                 
     except Exception as e:
-        logging.exception("Exception occurred")
+        print("Exception occurred",e)
         
         
 # -----------------------------------------------------------------------------------
