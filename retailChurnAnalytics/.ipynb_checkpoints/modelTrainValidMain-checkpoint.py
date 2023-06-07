@@ -55,9 +55,9 @@ from featureSelectionMain import trainTestSplitWithBestFeatMain
 
 # -----------------------------------------------------------------------------------
 ## load date and folder variables
-inputs = r"./retailChurnAnalytics/inputs/"
-outputs = r"./retailChurnAnalytics/outputs/"
-models = r"./retailChurnAnalytics/models/"
+inputs = r"retailChurnAnalytics/inputs/"
+outputs = r"retailChurnAnalytics/outputs/"
+models = r"retailChurnAnalytics/models/"
 
 # inputs = r"./inputs/"
 # outputs = r"./outputs/"

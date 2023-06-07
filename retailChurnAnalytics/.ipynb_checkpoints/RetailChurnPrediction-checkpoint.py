@@ -2,13 +2,11 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import logging
-import pickle
 import random
 import matplotlib.pyplot as plt
 import seaborn as sns
 sns.set(font_scale = 1.1)
-from sklearn.metrics import classification_report, roc_curve, auc, roc_auc_score, accuracy_score, confusion_matrix, RocCurveDisplay
-from sklearn.metrics import plot_precision_recall_curve
+from sklearn.metrics import roc_auc_score, accuracy_score, RocCurveDisplay
 from streamlit_shap import st_shap
 import shap
 shap.initjs()
@@ -22,10 +20,10 @@ from evaluateModelOnHoldData import evalModel
 
 
 
-holdOuts = r"./retailChurnAnalytics/holdOutData/"
-outputs = r"./retailChurnAnalytics/outputs/"
-models = r"./retailChurnAnalytics/models/"
-logs = r"./retailChurnAnalytics/logs/"
+holdOuts = r"retailChurnAnalytics/holdOutData/"
+outputs = r"retailChurnAnalytics/outputs/"
+models = r"retailChurnAnalytics/models/"
+logs = r"retailChurnAnalytics/logs/"
 
 # -----------------------------------------------------------------------------------
 ## prepare logging config
@@ -55,9 +53,9 @@ def RetailChurnPrediction (holdOuts, outputs, models):
         uploaded_file2 = st.file_uploader("Please upload activity data in csv format here", key='5')
         if (uploaded_file1 is not None) & (uploaded_file2 is not None):
             if st.button("Upload Files & Run Model", key='6'):
-                userdata  = pd.read_csv(uploaded_file1)
+                userdata  = pd.read_csv(uploaded_file1) #type: ignore
                 #userdata.to_csv(holdOuts+"userDataHdo.csv", index=False)
-                actdata  = pd.read_csv(uploaded_file2)
+                actdata  = pd.read_csv(uploaded_file2) #type: ignore
                 #actdata.to_csv(holdOuts+"activityDataHdo.csv", index=False)
 
                 churnPredDf, X_train, y_train, X_test, y_test, bestModel, selected_cols, holdSetFinal = evalModel(userdata, actdata, holdOuts, outputs, models)
@@ -66,7 +64,7 @@ def RetailChurnPrediction (holdOuts, outputs, models):
                 
                 # model evaluation metrics
                 st.title("Model evaluation metrics")
-                st.write("Best Model Selected: ",bestModel)
+                # st.write('Best Model Selected: ', bestModel)
                 predTr_ = bestModel.predict(X_train)
                 predTe_ = bestModel.predict(X_test)
                 
@@ -79,7 +77,7 @@ def RetailChurnPrediction (holdOuts, outputs, models):
                 
                 rocAucTr_ = roc_auc_score(y_train, predTr_)
                 rocAucTe_ = roc_auc_score(y_test, predTe_)
-                st.write('Model Train AUC Score: ', round(rocAucTr_,3), 'Model Test AUC Score: ', round(rocAucTe_,3))
+                st.write('Model Train AUC Score: ', round(rocAucTr_,3), 'Model Test AUC Score: ', round(rocAucTe_,3)) #type: ignore
                 #st.write('Model Test AUC Score: ', round(rocAucTe_,3))
             
                 # Create a model explainer

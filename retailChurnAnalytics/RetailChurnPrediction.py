@@ -20,10 +20,10 @@ from evaluateModelOnHoldData import evalModel
 
 
 
-holdOuts = r"./retailChurnAnalytics/holdOutData/"
-outputs = r"./retailChurnAnalytics/outputs/"
-models = r"./retailChurnAnalytics/models/"
-logs = r"./retailChurnAnalytics/logs/"
+holdOuts = r"retailChurnAnalytics/holdOutData/"
+outputs = r"retailChurnAnalytics/outputs/"
+models = r"retailChurnAnalytics/models/"
+logs = r"retailChurnAnalytics/logs/"
 
 # -----------------------------------------------------------------------------------
 ## prepare logging config

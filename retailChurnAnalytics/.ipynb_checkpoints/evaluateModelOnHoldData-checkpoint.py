@@ -43,9 +43,9 @@ from featureSelectionMain import trainTestSplitWithBestFeatMain #pylance: disabl
  
 # -----------------------------------------------------------------------------------
 ## load date and folder variables
-holdOuts = r"./retailChurnAnalytics/holdOutData/"
-outputs = r"./retailChurnAnalytics/outputs/"
-models = r"./retailChurnAnalytics/models/"
+holdOuts = r"retailChurnAnalytics/holdOutData/"
+outputs = r"retailChurnAnalytics/outputs/"
+models = r"retailChurnAnalytics/models/"
 
 # holdOuts = r"./holdOutData/"
 # outputs = r"./outputs/"
