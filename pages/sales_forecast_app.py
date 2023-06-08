@@ -2,13 +2,14 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import joblib
-
+import sys
+sys.path.insert(0, r"./SalesForecast/") 
 # Load the pkl file 
-reg_avg_tkt = joblib.load('C:/Users/Dishita Neve/Sales Forecast/Model/mod_avg_tkt.pkl')
-reg_ord = joblib.load('C:/Users/Dishita Neve/Sales Forecast/Model/mod_ord.pkl')
+reg_avg_tkt = joblib.load(r'./SalesForecast/Model/mod_avg_tkt.pkl') 
+reg_ord = joblib.load(r'./SalesForecast/Model/mod_ord.pkl')
 
 # Reading the original csv file
-df = pd.read_csv('C:/Users/Dishita Neve/Sales Forecast/Input/Champion_Data_Historical_Data.csv')
+df = pd.read_csv(r'./SalesForecast/Input/Champion_Data_Historical_Data.csv')
 df['Month'] = pd.to_datetime(df['Month'])
 # Adding Year and Month Column
 df['Year'] = df['Month'].dt.year
