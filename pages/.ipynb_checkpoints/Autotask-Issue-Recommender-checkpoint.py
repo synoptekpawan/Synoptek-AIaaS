@@ -47,7 +47,7 @@ sys.path.insert(0, r"./AutotaskIssueRecommender-main/") # retailDynamicPricing\R
 from autotask_app import autoTaskRec
 
 
-@st.cache_resource
+#@st.cache
 def main ():
     try:
         st.title("Welcome to Autotask Issue Recommender service")

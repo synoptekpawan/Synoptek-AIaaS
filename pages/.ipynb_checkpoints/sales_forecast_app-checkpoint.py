@@ -5,7 +5,7 @@ import joblib
 import sys
 sys.path.insert(0, r"./SalesForecast/") 
 # Load the pkl file
-@st.cache_resource
+
 reg_avg_tkt = joblib.load(r'./SalesForecast/Model/mod_avg_tkt.pkl') 
 reg_ord = joblib.load(r'./SalesForecast/Model/mod_ord.pkl')
 

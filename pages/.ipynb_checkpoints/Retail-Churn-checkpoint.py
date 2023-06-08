@@ -18,7 +18,7 @@ outputs = r"./retailChurnAnalytics/outputs/"
 models = r"./retailChurnAnalytics/models/"
 logs = r"./retailChurnAnalytics/logs/"
 
-@st.cache_resource
+# @st.cache_resource(suppress_st_warning=True)
 def main ():
     try:
         st.title("Welcome to Retail Churn Analysis & Prediction service")

@@ -23,6 +23,7 @@ from tpot.export_utils import set_param_recursive
 import os
 import sys
 import pickle
+import traceback
 
 sys.path.insert(0, r"./retailDynamicPricing/utils/")
 # sys.path.insert(0, r"./utils/")
@@ -103,8 +104,8 @@ def RetailDynamicPricing (holdOuts, outputs, models):
 
         st.success('Thanks for using the service')
                 
-    except Exception as e:
-        print("Exception occurred",e)
+    except Exception:
+        traceback.print_exc()
         
         
 # -----------------------------------------------------------------------------------
