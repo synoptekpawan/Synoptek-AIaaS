@@ -24,7 +24,7 @@ logs = r"./retailDynamicPricing/logs/"
 # models = r"./models/"
 # logs = r"./logs/"
 
-
+@st.cache_resource
 def main ():
     try:
         st.title("Welcome to Retail Dynamic Pricing service")

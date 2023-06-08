@@ -7,7 +7,7 @@ import random
 np.random.seed(10)
 random.seed(10)
 import sys
-sys.path.insert(0, r"./retailDynamicPricing/")
+sys.path.insert(0, r"./retailDynamicPricing/") # retailDynamicPricing\RetailDynamicPricing.py
 # sys.path.insert(0, r"./utils/")
 #from evaluateModelOnHoldData import evalModel
 from RetailDynamicPricing import RetailDynamicPricing
@@ -24,7 +24,7 @@ logs = r"./retailDynamicPricing/logs/"
 # models = r"./models/"
 # logs = r"./logs/"
 
-
+@st.cache_resource
 def main ():
     try:
         st.title("Welcome to Retail Dynamic Pricing service")

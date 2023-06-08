@@ -15,6 +15,7 @@ from scipy.spatial.distance import cosine
 import torch
 from numpy.linalg import norm
 #device = torch.device("cuda")
+
 device = torch.device("cpu")
 model.to(device)
 
@@ -26,6 +27,7 @@ import pickle
 #     embeddings_dataset = pickle.load(f)
 
 # load the X_train from disk
+
 f = models_+"text_embeddings.pkl"
 embeddings_dataset = pickle.load(open(f, 'rb'))
 
@@ -45,7 +47,7 @@ sys.path.insert(0, r"./AutotaskIssueRecommender-main/") # retailDynamicPricing\R
 from autotask_app import autoTaskRec
 
 
-
+@st.cache_resource
 def main ():
     try:
         st.title("Welcome to Autotask Issue Recommender service")
