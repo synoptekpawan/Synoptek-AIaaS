@@ -8,6 +8,6 @@ st.set_page_config(
 
 )
 
-st.title("Synoptek - MLaaS")
-st.title("Welcome to Synoptek-MLaaS Service")
+st.title("Synoptek - AIaaS")
+st.title("Welcome to Synoptek - AIaaS Service")
 st.sidebar.success("Select a page above")

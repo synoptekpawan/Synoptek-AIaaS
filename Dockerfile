@@ -16,7 +16,7 @@ COPY requirements.txt ./requirements.txt
 
 RUN pip install -r requirements.txt
 
-EXPOSE 8507
+EXPOSE 8501
 
 COPY . .
 
