@@ -29,6 +29,14 @@ jobs:
       
       - name: Install dependencies
         run: pip install -r requirements.txt
+
+      - name: delete artifact for deployment jobs
+        uses: actions/delete-artifact@v2
+        with:
+          name: python-app
+          path: |
+            . 
+            !venv/
         
       # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
       
@@ -62,14 +70,8 @@ jobs:
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_9EDA03C43AF845C2A2F2176DE147257C }}
 
-
-  delete:
-    runs-on: ubuntu-latest
-    steps:
       - name: Delete artifact for deployment jobs
         uses: actions/delete-artifact@v2
         with:
           name: python-app
-          path: |
-                . 
-                !venv/
+          path: .
