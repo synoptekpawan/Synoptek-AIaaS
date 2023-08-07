@@ -29,14 +29,6 @@ jobs:
       
       - name: Install dependencies
         run: pip install -r requirements.txt
-
-      - name: delete artifact for deployment jobs
-        uses: actions/delete-artifact@v2
-        with:
-          name: python-app
-          path: |
-            . 
-            !venv/
         
       # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
       
