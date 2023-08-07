@@ -26,6 +26,8 @@ share/python-wheels/
 *.egg
 MANIFEST
 .idea/
+.vscode/
+.ipynb_checkpoints/
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
@@ -75,6 +77,9 @@ docs/_build/
 # PyBuilder
 .pybuilder/
 target/
+
+# VS code
+.vscode
 
 # Jupyter Notebook
 .ipynb_checkpoints
@@ -161,7 +166,3 @@ cython_debug/
 #.idea/
 
 # exclusive for this proj
-main.py
-requirements.txt
-code/notebook/"Model Training.ipynb"
-code/notebook/"Sales Forecast.ipynb"
