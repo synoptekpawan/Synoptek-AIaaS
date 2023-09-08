@@ -61,3 +61,9 @@ jobs:
           app-name: 'Synoptek-AIaaS'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_9EDA03C43AF845C2A2F2176DE147257C }}
+
+      - name: Delete artifact for deployment jobs
+        uses: actions/delete-artifact@v2
+        with:
+          name: python-app
+          path: .

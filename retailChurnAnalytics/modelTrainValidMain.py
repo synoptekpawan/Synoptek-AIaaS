@@ -21,7 +21,7 @@ from sklearn.model_selection import RepeatedStratifiedKFold
 from sklearn.feature_selection import SelectKBest
 from sklearn.feature_selection import mutual_info_classif
 from sklearn.linear_model import LogisticRegression
-from sklearn.ensemble import AdaBoostClassifier
+from sklearn.ensemble import AdaBoostClassifier, RandomForestClassifier
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import accuracy_score
 from sklearn.metrics import roc_curve, auc
@@ -40,10 +40,10 @@ random.seed(10)
 
 sys.path.insert(0, r"./retailChurnAnalytics/utils/")
 # sys.path.insert(0, r"./utils/")
-from churnUtility import *
-from dataLabelingMain import dataLabelingMain
-from featureEnggMain import featureEnggMain
-from featureSelectionMain import trainTestSplitWithBestFeatMain
+from utils.churnUtility import *
+from utils.dataLabelingMain import dataLabelingMain
+from utils.featureEnggMain import featureEnggMain
+from utils.featureSelectionMain import trainTestSplitWithBestFeatMain
  
 
 # -----------------------------------------------------------------------------------
@@ -180,7 +180,8 @@ pickle.dump(y_test, open(f, 'wb'))
 ## model training
 try:
     ## train, validate ML model1
-    tpot = TPOTClassifier(generations=5, verbosity=2,  population_size=40, random_state=42)
+    # tpot = TPOTClassifier(generations=5, verbosity=2,  population_size=40, random_state=42)
+    tpot = RandomForestClassifier(random_state=42)
     tpot.fit(X_train_fs, y_train)
 
     pred_tpot = tpot.predict(X_test_fs)

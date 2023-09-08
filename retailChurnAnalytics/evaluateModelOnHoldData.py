@@ -36,10 +36,10 @@ import pickle
 # sys.path.insert(0, r"./utils/")
 sys.path.insert(0, r"./retailChurnAnalytics/utils/")
 
-from churnUtility import * #pylance: disable-reportMissingImports
-from dataLabelingMain import dataLabelingMain #pylance: disable-reportMissingImports
-from featureEnggMain import featureEnggMain #pylance: disable-reportMissingImports
-from featureSelectionMain import trainTestSplitWithBestFeatMain #pylance: disable-reportMissingImports
+from utils.churnUtility import * #pylance: disable-reportMissingImports
+from utils.dataLabelingMain import dataLabelingMain #pylance: disable-reportMissingImports
+from utils.featureEnggMain import featureEnggMain #pylance: disable-reportMissingImports
+from utils.featureSelectionMain import trainTestSplitWithBestFeatMain #pylance: disable-reportMissingImports
  
 # -----------------------------------------------------------------------------------
 ## load date and folder variables
