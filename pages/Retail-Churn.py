@@ -8,9 +8,9 @@ np.random.seed(10)
 random.seed(10)
 import sys
 sys.path.insert(0, r"./retailChurnAnalytics/")
-from evaluateModelOnHoldData import evalModel
-from RetailChurnPrediction import RetailChurnPrediction
-from RetailChurnDashboard import RetailChurnDashboard
+from retailChurnAnalytics.evaluateModelOnHoldData import evalModel
+from retailChurnAnalytics.RetailChurnPrediction import RetailChurnPrediction
+from retailChurnAnalytics.RetailChurnDashboard import RetailChurnDashboard
 #from RetailChurnTestResponse import RetailChurnTestResponse
 
 holdOuts = r"./retailChurnAnalytics/holdOutData/"
