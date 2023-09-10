@@ -6,11 +6,11 @@ import pickle
 import random
 np.random.seed(10)
 random.seed(10)
-import sys
-sys.path.insert(0, r"./retailDynamicPricing/") # retailDynamicPricing\RetailDynamicPricing.py
-# sys.path.insert(0, r"./utils/")
-#from evaluateModelOnHoldData import evalModel
-from RetailDynamicPricing import RetailDynamicPricing
+# import sys
+# sys.path.insert(0, r"./retailDynamicPricing/") # retailDynamicPricing\RetailDynamicPricing.py
+# # sys.path.insert(0, r"./utils/")
+# #from evaluateModelOnHoldData import evalModel
+from retailDynamicPricing.RetailDynamicPricing import RetailDynamicPricing
 #from RetailChurnDashboard import RetailChurnDashboard
 #from RetailChurnTestResponse import RetailChurnTestResponse
 

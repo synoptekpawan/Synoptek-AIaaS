@@ -5,6 +5,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import joblib
+import pickle
 import os
 from dotenv import load_dotenv
 load_dotenv()
@@ -17,14 +18,18 @@ container_name = os.environ['container_name']
 # Load the pkl file 
 p = r"./Sales_Forecast/Model/"
 #reg_avg_tkt = joblib.load('C:/Users/dneve/Sales_Forecast/Model/mod_avg_tkt.pkl')
-reg_avg_tkt = joblib.load(p+'mod_avg_tkt.pkl')
+## load the best features from disk
+f = p+'mod_avg_tkt.pkl'
+reg_avg_tkt = pickle.load(open(f, 'rb'))
 #reg_ord = joblib.load('C:/Users/dneve/Sales_Forecast/Model/mod_ord.pkl')
-reg_ord = joblib.load(p+'mod_ord.pkl')
+f = p+'mod_ord.pkl'
+reg_ord = pickle.load(open(f, 'rb'))
 #reg_appt_crt = joblib.load('C:/Users/dneve/Sales_Forecast/Model/mod_appt_created.pkl')
-reg_appt_crt = joblib.load(p+'mod_appt_created.pkl')
+f = p+'mod_appt_created.pkl'
+reg_appt_crt = pickle.load(open(f, 'rb'))
 
 # Reading the original csv file
-inp = r"./Input/"
+inp = r"./Sales_Forecast/Input/"
 df = pd.read_excel(inp + 'Data_Cleaning.xlsx')
 
 def salesforecast(reg_avg_tkt,reg_ord,reg_appt_crt,df) :

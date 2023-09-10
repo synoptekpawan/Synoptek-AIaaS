@@ -19,12 +19,12 @@ from sklearn.svm import LinearSVR
 from tpot.builtins import StackingEstimator, ZeroCount
 from tpot.export_utils import set_param_recursive
 import os
-import sys
 import pickle
-sys.path.insert(0, r"./retailDynamicPricing/utils/")
+# import sys
+# sys.path.insert(0, r"./retailDynamicPricing/utils/")
 # sys.path.insert(0, r"./utils/")
-from dropOutliers import drop_outliers
-from model_selection import trainedModel
+# from utils.dropOutliers import drop_outliers
+# from utils.model_selection import trainedModel
 # -----------------------------------------------------------------------------------
 ## load date and folder variables
 holdOuts = r"./retailChurnAnalytics/holdOutData/"
