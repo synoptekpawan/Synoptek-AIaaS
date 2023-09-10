@@ -6,17 +6,19 @@ import pickle
 import random
 np.random.seed(10)
 random.seed(10)
-import sys
-sys.path.insert(0, r"./retailChurnAnalytics/")
-from retailChurnAnalytics.evaluateModelOnHoldData import evalModel
-from retailChurnAnalytics.RetailChurnPrediction import RetailChurnPrediction
-from retailChurnAnalytics.RetailChurnDashboard import RetailChurnDashboard
+# import sys
+# sys.path.insert(0, r"./retailChurnAnalytics/")
+# from retailChurnAnalytics.evaluateModelOnHoldData import evalModel
+from retailChurnAnalytics_copy.prediction import RetailChurnPrediction
+from retailChurnAnalytics_copy.RetailChurnDashboard import RetailChurnDashboard
 #from RetailChurnTestResponse import RetailChurnTestResponse
 
-holdOuts = r"./retailChurnAnalytics/holdOutData/"
-outputs = r"./retailChurnAnalytics/outputs/"
-models = r"./retailChurnAnalytics/models/"
-logs = r"./retailChurnAnalytics/logs/"
+# from RetailChurnPrediction import RetailChurnPrediction
+# from RetailChurnDashboard import RetailChurnDashboard
+
+holdOuts = r"retailChurnAnalytics_copy/holdOutData/"
+outputs = r"retailChurnAnalytics_copy/outputs/"
+models = r"retailChurnAnalytics_copy/models/"
 
 # @st.cache_resource(suppress_st_warning=True)
 def main ():
@@ -34,8 +36,7 @@ def main ():
 
                 
     except Exception as e:
-        logging.exception("Exception occurred")
-        
+        print(e)
         
 # -----------------------------------------------------------------------------------
 if __name__ == '__main__':

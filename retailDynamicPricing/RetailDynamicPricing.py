@@ -25,9 +25,9 @@ import sys
 import pickle
 import traceback
 
-sys.path.insert(0, r"./retailDynamicPricing/utils/")
-# sys.path.insert(0, r"./utils/")
-from evaluateModelOnHoldData import evalModel
+# sys.path.insert(0, r"./retailDynamicPricing/utils/")
+# # sys.path.insert(0, r"./utils/")
+from retailDynamicPricing.evaluateModelOnHoldData import evalModel
 # Need to load JS vis in the notebook
 
 holdOuts = r"./retailDynamicPricing/holdOutData/"
